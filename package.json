@@ -35,6 +35,7 @@
     "node": "*"
   },
   "scripts": {
+    "prepublishOnly": "node scripts/require-dist-tag.cjs",
     "test": "gulp test",
     "docs": "./node_modules/.bin/codo -n BackboneORM -a UA-36443094-3 -o docs src/."
   },
