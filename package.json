@@ -2,7 +2,19 @@
   "name": "backbone-orm",
   "version": "0.7.14",
   "description": "A polystore ORM for Node.js and the browser",
-  "main": "backbone-orm.js",
+  "keywords": [
+    "backbone",
+    "orm",
+    "backbone-orm"
+  ],
+  "homepage": "https://github.com/vidigami/backbone-orm",
+  "bugs": {
+    "url": "https://github.com/vidigami/backbone-orm/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vidigami/backbone-orm.git"
+  },
   "license": "MIT",
   "author": {
     "name": "Kevin Malakoff",
@@ -18,70 +30,80 @@
       "url": "https://github.com/ryansolid"
     }
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/vidigami/backbone-orm.git"
+  "type": "commonjs",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./browser": "./dist/esm/browser.js",
+    "./umd": {
+      "node": {
+        "import": "./dist/esm/nodeUmd.js",
+        "require": "./dist/cjs/nodeUmd.js"
+      },
+      "default": "./backbone-orm.js"
+    },
+    "./package.json": "./package.json"
   },
-  "bugs": {
-    "url": "https://github.com/vidigami/backbone-orm/issues"
+  "main": "dist/cjs/index.js",
+  "source": "src/index.ts",
+  "types": "dist/cjs/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "browser": [
+        "dist/esm/browser.d.ts"
+      ],
+      "umd": [
+        "dist/cjs/nodeUmd.d.ts"
+      ]
+    }
   },
-  "homepage": "https://github.com/vidigami/backbone-orm",
-  "keywords": [
-    "backbone",
-    "orm",
-    "backbone-orm"
+  "files": [
+    "backbone-orm.js",
+    "dist"
   ],
-  "engines": {
-    "node": "*"
-  },
   "scripts": {
-    "test": "gulp test",
-    "docs": "./node_modules/.bin/codo -n BackboneORM -a UA-36443094-3 -o docs src/."
-  },
-  "devDependencies": {
-    "async": "*",
-    "benchmark": "*",
-    "chai": "*",
-    "codo": "*",
-    "coffee-loader": "*",
-    "coffee-script": "*",
-    "event-stream": "*",
-    "gulp": "*",
-    "gulp-bench": "*",
-    "gulp-browserify": "*",
-    "gulp-coffee": "*",
-    "gulp-compile-js": "*",
-    "gulp-concat": "*",
-    "gulp-header": "*",
-    "gulp-mocha": "*",
-    "gulp-rename": "*",
-    "gulp-require-src": "*",
-    "gulp-shell": "*",
-    "gulp-uglify": "*",
-    "gulp-util": "*",
-    "gulp-webpack-config": "*",
-    "gulp-wrap-amd-infer": "*",
-    "inflection": "*",
-    "jquery": "*",
-    "karma": "*",
-    "karma-chai": "*",
-    "karma-chrome-launcher": "*",
-    "karma-cli": "*",
-    "karma-coffee-preprocessor": "*",
-    "karma-firefox-launcher": "*",
-    "karma-mocha": "*",
-    "karma-phantomjs-launcher": "*",
-    "karma-safari-launcher": "*",
-    "karma-spec-reporter": "*",
-    "lodash": "*",
-    "lru-cache": "*",
-    "mocha": "*",
-    "queue-async": "*",
-    "webpack": "*",
-    "wrench": "*"
+    "build": "tsds build",
+    "format": "tsds format",
+    "prepublishOnly": "node scripts/require-dist-tag.cjs && npm run validate && npm run test:package",
+    "test": "npm run test:browser && npm run test:types && tsds test:node --no-timeouts \"test/exports/import.test.*\" \"test/exports/require.test.cjs\" \"test/exports/umd.test.*\" \"test/integration/*.test.*\" \"test/unit/**/*.test.*\"",
+    "test:browser": "tsds test:browser --config wtr.config.mjs \"test/browser/**/*.test.ts\" \"test/exports/browser.test.ts\"",
+    "test:engines": "npm run test:browser && nvu engines tsds test:node --no-timeouts \"test/exports/import.test.*\" \"test/exports/require.test.cjs\" \"test/exports/umd.test.*\" \"test/integration/*.test.*\" \"test/unit/**/*.test.*\"",
+    "test:package": "npm run build && node test/integration/packedConsumers.ts",
+    "test:types": "npm run build && node test/integration/typeConsumer.ts",
+    "validate": "npm run test:types && tsds validate",
+    "version": "tsds version"
   },
   "dependencies": {
-    "underscore": "1.x",
+    "@types/backbone": "1.4.23",
+    "inflection": "1.8.0",
+    "lru-cache": "4.0.0",
+    "underscore": "1.x"
+  },
+  "devDependencies": {
+    "@types/mocha": "10.0.10",
+    "@types/node": "18.19.130",
+    "backbone": "1.6.1",
+    "fs-remove-compat": "1.0.6",
+    "node-version-use": "1.9.0",
+    "ts-dev-stack": "1.22.6",
+    "tsds-build": "1.23.3",
+    "tsds-config": "1.0.5",
+    "tsds-mocha": "1.24.0",
+    "tsds-validate": "1.7.9",
+    "tsds-web-test-runner": "1.21.0"
+  },
+  "peerDependencies": {
     "backbone": "1.x"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "allowScripts": {
+    "@swc/core@1.16.2": true,
+    "core-js-pure": false,
+    "esbuild@0.28.2": true,
+    "fsevents": false
   }
 }

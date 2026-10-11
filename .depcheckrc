@@ -1,0 +1,2 @@
+ignores: ["backbone-orm", "node-version-use", "ts-dev-stack", "tsds-build", "tsds-mocha", "tsds-validate", "tsds-web-test-runner", "fs-remove-compat", "underscore"]
+ignorePatterns: ["backbone-orm.js", "backbone-orm.min.js", "stream.js", "stream.min.js", "gulpfile.coffee", "config/**", "src/**/*.coffee", "test/**/*.coffee", "test/lib/requirejs-2.1.14.js", "test/integration/published-memory/**", "test/integration/typed-memory/**"]

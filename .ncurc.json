@@ -1,0 +1,1 @@
+{ "upgrade": true, "reject": ["@types/backbone", "@types/node", "backbone", "fs-remove-compat", "inflection", "lru-cache", "node-version-use", "ts-dev-stack", "tsds-build", "tsds-config", "tsds-mocha", "tsds-validate"] }

@@ -1,0 +1,33 @@
+{
+  "extends": ["tsds-config/biome.json"],
+  "files": {
+    "includes": [
+      "src/**/*.ts",
+      "test/browser/**/*.test.ts",
+      "test/exports/**/*",
+      "test/integration/*.mjs",
+      "test/integration/*.ts",
+      "test/types/**/*.ts",
+      "wtr.config.mjs",
+      "!backbone-orm.js",
+      "!backbone-orm.min.js",
+      "!stream.js",
+      "!stream.min.js",
+      "!bower.json",
+      "!component.json",
+      "!config",
+      "!test/lib",
+      "!dist",
+      "!node_modules",
+      "!.git",
+      "!.tmp",
+      "!test/integration/published-memory",
+      "!test/integration/typed-memory"
+    ]
+  },
+  "vcs": {
+    "clientKind": "git",
+    "enabled": true,
+    "useIgnoreFile": true
+  }
+}

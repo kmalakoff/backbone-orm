@@ -1,0 +1,26 @@
+{
+  "extends": "tsds-config/tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "types": ["mocha", "node"]
+  },
+  "include": [
+    "src/**/*.ts",
+    "test/browser/**/*.test.ts",
+    "test/exports/**/*",
+    "test/integration/memory*.test.ts",
+    "test/integration/cursorContracts.test.ts",
+    "test/integration/databaseFoundationContracts.test.ts",
+    "test/integration/fabricatorTestUtilsContracts.test.ts",
+    "test/integration/jsonUtilsContracts.test.ts",
+    "test/integration/connectionPoolContracts.test.ts",
+    "test/integration/nodeBootstrap.test.ts",
+    "test/integration/modelJSONSaveCallbacks.test.ts",
+    "test/integration/relationOperations.test.ts",
+    "test/integration/schemaRelationContracts.test.ts",
+    "test/lib/*.ts",
+    "test/types/**/*.ts",
+    "test/unit/**/*.test.ts"
+  ],
+  "exclude": ["node_modules", "dist"]
+}
