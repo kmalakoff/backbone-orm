@@ -14,3 +14,4 @@ _temp/
 .tmp/
 /test/integration/published-memory/
 /test/integration/typed-memory/
+.cache/
